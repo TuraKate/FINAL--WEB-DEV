@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Activity 4</title>
+        <link href="act4.css" rel="stylesheet" />
+        <script src="act4.js" defer></script>
+        <style>
+            body {
+    align-items: center;
+    background-color: #242943;
+    display: flex;
+    font-family: "Segoe UI", sans-serif;
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+}
+
+#clock {
+    animation: glow 3s infinite alternate;
+    color: #ffffff;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(69, 21, 182, 0.5);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    to {
+        text-shadow:
+            0 0 20px #ff00ff,
+            0 0 30px #48ff00,
+            0 0 40px #ff00ff,
+            0 0 70px #ff00ff,
+            0 0 80px #ff00ff,
+            0 0 100px #ff00ff,
+            0 0 150px #ff00ff;
+    }
+}
+        </style>
+    </head>
+    <body>
+        <h1 id="clock"></h1>
+        <script>
+            function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+function setAlarm() {
+    const alarmTime = document.getElementById('alarmTime').value;
+    const [alarmHour, alarmMinute] = alarmTime.split(':');
+    const now = new Date();
+    const nowHour = now.getHours();
+    const nowMinute = now.getMinutes();
+    const alarmDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), alarmHour, alarmMinute, 0, 0);
+    const timeUntilAlarm = alarmDateTime - now;
+
+    if (timeUntilAlarm <= 0) {
+        alert("Please select a time in the future.");
+        return;
+    }
+
+    setTimeout(() => {
+        alert("Alarm!");
+    }, timeUntilAlarm);
+}
+
+updateClock();
+setInterval(updateClock, 1000); 
+        </script>
+    </body>
+</html>
