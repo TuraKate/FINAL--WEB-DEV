@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interactive Questionnaire</title>
+        <link href="act2.css" rel="stylesheet" />
+        <script src="act2.js" defer></script>
+        <style>
+            body {
+    font-family: "Segoe UI", sans-serif;
+    line-height: 1.5;
+    margin: 30px;
+    background-color: aqua;
+}
+
+fieldset {
+    margin-bottom: 15px;
+}
+
+h1,
+p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 8px;
+    width:x 80px;;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#submit {
+    background-color: #0060df;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+}
+
+#submit:hover {
+    background-color: #2374ff;
+}
+
+#survey-form {
+    margin: auto;
+    max-width: 600px;
+}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Activity 2: Interactive Questionnaire</h1>
+            <div id="question"></div>
+            <input type="text" id="answer" placeholder="Enter your answer" />
+            <button id="submit">Submit</button>
+            <div id="feedback"></div>
+        </div>
+        <script>
+            const questions = [
+    { q: "1. What is the capital of Philippines?", a: "Manila" },
+    { q: "2. Who is the current Philippine president?", a: "Bongbong Marcos" },
+    { q: "3. Where is Philippines located?", a: "Asia" },
+    { q: "4. What is the Queen City of the South?", a: "Cebu City" },
+    {
+        q: "5. Where did Lapu-Lapu vs. Magellan's fight take place?",
+        a: "Mactan",
+    },
+];
+
+let i = 0;
+
+function display() {
+    document.getElementById("question").textContent = questions[i].q;
+}
+
+function check() {
+    const answer = document.getElementById("answer").value;
+    if (answer === questions[i].a) {
+        i++;
+        if (i === questions.length) {
+            alert("Congrats! You answered all questions correctly!");
+        } else {
+            display();
+            document.getElementById("feedback").textContent =
+                "Correct! Next question...";
+        }
+    } else {
+        i = 0;
+        display();
+        document.getElementById("feedback").textContent =
+            "Incorrect. Please try again.";
+    }
+    document.getElementById("answer").value = "";
+}
+
+display();
+document.getElementById("submit").addEventListener("click", check);
+        </script>
+    </body>
+</html>
