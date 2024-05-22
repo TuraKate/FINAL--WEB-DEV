@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Activity 3</title>
+        <link href="stylesheet" rel="act3.css">
+        <script src="act3.js" defer></script>
+        <style>
+            body {
+    font-family: "Segoe UI", sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url(https://img.freepik.com/free-vector/beige-leafy-watercolor-background-vector_53876-136491.jpg);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#name {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#message {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+        </style>
+    </head>
+    <body>
+        <h1>Hi  there!</h1>
+        <p>Please enter your name:</p>
+        <input type="text" id="name" placeholder="Enter your name here" />
+        <button onclick="message()">Click me!</button>
+        <div id="message"></div>
+        <script>
+            function message() {
+    var name = document.getElementById("name").value;
+    var message = document.getElementById("message");
+
+    if (name) {
+        message.innerHTML = `<p>Welcome Mr/Mrs ${name}</p>`;
+    } else {
+        message.innerHTML = "<p>Please enter your name</p>";
+    }
+}
+        </script>
+    </body>
+</html> 
